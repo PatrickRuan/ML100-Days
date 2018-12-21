@@ -1,0 +1,3 @@
+1.) local directory is at : d:\git\ML100-Days
+2.) Documents are stored at D:\User\GitHub\MLCM100 (if fact, we saved these documents which were downloaded from Cupoy 100)
+3.) Programs are stored at D:\MyPython\Cupoy100D, any program which is needed to commit, we will copy it to c:\
