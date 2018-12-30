@@ -88,20 +88,70 @@ Day 9: 今天沒有作業，在介紹相關係數。
 Day 10: 相關係數實作
 
 	延續第九天的介紹，開始進行相關係數的應用。
+	這兩天似乎作不多，內容也輕鬆，所以我們剛好喘一口氣來回顧至今的 EDA，避開學習中的見樹不見林，
+	• Day 2: 我們第一天進行 EDA，是從資料的筆數、欄位多寡開始認識我們手中有多少東西。當然不要忘了我們也閱讀的欄位的描述文件。
+	• Day 4: 我們開始跳進去欄位去看所有欄位的資料格式，查看是浮點數、整數或物件資料。對於類別型資料我們馬上進行編碼工作。
+	• Day 5: 我們學習繼續留在欄位中觀察他們的基本統計資料。
+		我們可以這麼說，
+		Day 4 用 app_train.dtypes.value_counts() 與 app_train.select_dtypes(include=["object"]).apply(pd.Series.nunique, axis = 0) 來了解各種資料型態的個數與找出所有類別型資料與檢視類別型欄位各自類別的數量。
+		Day 5 是用 .describe() 看欄位資料的統計特徵與用 plt.hist() 去劃出直方圖 histogram 讓我們認識欄位資料。
+	• Day 6: 在經過 Day 5 的統計資訊觀察後，我們在 Day 6就要初步判斷是否有 outlier，這次有用到 boxplot 圖。
+	• Day 7: 跟 Day 6 是連續動作，對於一些 outlier 的處理，同時當個別欄位資料的 outlier 都處理的，我們也不希望整體的欄位中有某幾個因為單位不依樣因為數值特別大讓我們後續模型運算時有不平衡的影響，所以就一併作了標準化。
+	• Day 9, 10: 當我們基本資料觀察與修正了之後，我們就展開了所有特徵值(欄位資料)對於 目標 的相關運算。
+	
 	HW: 既然是實作，第十天的主要工作就是好好地進行作業，主要是把資料型態為 Object 都進行了 one hot encoding 都成為了數字，然後與 Target 作 相關性計算，我們作了 corr()，不送進 sns.heatmap 因為實在太多了特徵值了，會畫很久喔! 然後挑出最大的幾個來觀察。
 	今天的觀察有把同一個特徵在目標為 1 與目標為 0 去查看一下有沒有分布上的不同，然後去思考觀察一些現象。同時也建議同學在 https://www.kaggle.com/c/home-credit-default-risk/data 的最下方 application_test.csv (5.58 MB)的表格玩一玩，可以很方便地觀察到一些資訊!
 	
-Day 11: 繪圖與樣式＆Kernel Density Estimation (KDE)
+Day 11: 繪圖與樣式＆Kernel Density Estimation (KDE) 
 
-Kernel density estimation is a way to estimate the probability density function (PDF) of a random variable in a non-parametric way
-
-
-
+	在第十天的作業中，最後一個任務，我們不只觀看一個特徵的分布以及他與目標的相關性，我們也將該特徵分拆觀察，觀看不同目標結果的特徵子集合的特性。第十一天也繼續往分拆特徵進入特徵子集合的觀察前進。
+	第十一天內容分成兩個部分介紹，
+	• 介紹 KDE，我有在網路上查到這個 "kernel density estimation is a way to estimate the probability density function (PDF) of a random variable in a non-parametric way" 果然，KDE 就是對 pdf 估算的方法。如果我們用 sns.kdeplot() 去看圖，會得到一條連續數值的曲線，如果用 sns.distplot() 去畫圖，就會得到該條曲線與個別值的相對機率，後者(個別值的相對機率) 長得很像直方圖，請同學思考他跟直方圖的關係！
+	• 第二個內容介紹就是前面提到的將特徵分群拆成好多個子集合子群分別觀察 KDE。
 	
+	這些微細的觀察都是讓我們對於觀察對象及其特徵更清楚的認識與掌握。
+	
+	HW: 上面的描述很多都是在解釋第十一天的作業，有些我也還在努力觀察中，加油。
+	
+Day 12: 把連續型變數離散化 
+
+	第十二天沒有作業，內容也簡單，就是 ptt 肥宅愛用的詞用上了: "如題" 把連續型變數離散化。
+	在第十一天的作業最後一部分，採用了 barplot，觀察出 "年紀愈輕" failed to repay 的可能性愈大，當然我們也可以直接用連續數值，但是把他離散化有助於把問題簡單化，想想我們有好多特徵值，似乎問題很複雜啊！同時~~ 也可以將 outlier 解決掉，將300歲歸為最大歲數那一類(這樣對嗎?) 
+	通常，我們的分群有三個方法等寬，等頻，等類。
+	我們第十三天的作業會用到等寬，等頻。 等類我還沒好好研究。
+	這裡提示一些好應付 Day 13，
+	pd.cut(Data_feature, bins = 整數值 n ) 這就是等寬，會從最小值到最大值等分成 n 個區間。
+	pd.qcut(Data_feature, bins = 整數值 n) 這就是等頻，會從最小值到最大值分成 n 個區間，每個區間沒有意外就會都有一樣的樣品數量。
+	大家可以思考一下，為什麼我不是說一定數量，而是加了一句沒有意外的話。
 	
 
-	r
+Day 13: 把連續型變數離散化  
 	
+	在第十三天後，EDA 的學習就快要近尾聲了(但還沒尾聲啦)。第十三天就是根據第十二天的內容好好地完成作業。
+	
+Day 14: 把連續型變數離散化  
+		
+	第十四天的主要在學習另一個視覺化的技巧，讓好些個序列的圖表，相關聯的圖表有結構的排列比對，可以協助我們更好觀察。
+	HW: 對於 python 不熟悉的同學，會吃力，但是也就是提供更多練習機會讓大家提升跟上同學。加油。
+	
+Day 15:　Heatmap & Grid-plot   
+
+	在 Day 13 時我們說近尾聲是真的，但是第十五天的觀察真的是重要。 
+	sns.heatmap(corr()) 先前就作過，但是仍然重要。
+	sns.sns.PairGrid() 更是有趣的讓我們作出一個相關圖但是其相關觀察可以有我們決定。
+
+Day 16: 模型初體驗 Logistic Regression 
+
+	好了，我們要上 Kaggle 了，第十六天請大家作幾個任務，
+	◆ 自己上網查看 sklearn Imputer 在幹嘛。
+	◆ 請大家上網查看李宏毅老師(hung yi lee) 的教學影片或吳恩達老師(Andrew Nq) 的教學影片學習甚麼是 Logistic Regression。
+	◆ 請大家上網查看 sklearn LogisticRegress 怎麼用
+	◆ 大家互相澄清一下 Logistic Regression 到底是迴歸法(Regression) 還是分類法(Classification)?
+	◆ 請大家拿出 Day 2 的 submission.csv 準備，寫完作業後比對一下格式。 
+	
+	HW: 就是把作業寫完，準備上 Kaggle 吧！ 
+	作業產生的格式與 submission.csv 一不一樣? 這樣上傳有沒有問題? 如果有問題，怎麼辦? 
+	還有Kaggle 上傳的方式，請上網 Google！
 	
 	
 	
