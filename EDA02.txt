@@ -1,0 +1,80 @@
+﻿
+【ML102未來高手: D4 ~ D5 】
+
+.
+
+【前幾天在說什麼】
+
+某種程度，前三天也算是對環境的熟悉，
+第一天的課程，技術含量不大，但是非常重要，對題目的研究、了解題目會對資料科學研究方向產生正面影響。
+第二天開始看看手中資料的筆數、含有多少特徵等。等於由外開始，有點像開箱文的開箱動作；從第四天起就要真的開始進入資料內部，有步驟的剝洋蔥。
+
+本文的內容會基本介紹 Cupoy Day 4 ~ Day 5 兩天的工作，我們設定的目標是 1/11 完成，有進度落後的同學請利用周末跟上，加油。
+
+作業的分享有，
+https://github.com/freyatzeng/ML100-Days ，與
+https://github.com/PatrickRuan/ML100-Days
+
+
+個人的心得，Day 1 ~ Day 16 需要知道的統計機率就是統計機率可以來敘述手中的資料預估更大範疇的母體，從中看得的特性特徵就跟我們的機器學習有關。
+比如，我們家的麵包店觀看久了就知道天氣涼，不下雨生意會很好，寒暑假週五週六生意差。
+基本要的統計量就是平均值，中位數，標準差，眾數加上直方圖 
+
+
+
+【這兩天的進度】
+
+Day 4: EDA 資料類型介紹
+
+	我們在第二天開始進行了 EDA 資料探勘的動作，當時是看整個資料的外型，有多少特徵有多少筆資料，今天起我們要開始一步一步的觀察特徵資料。
+	
+	跳進特徵研究的第一個小動作就是要知道，每一個特徵的格式，也就是資料的類別；基本的類別有 float64, int64, object。
+	
+	要留意 object是我們的機器無法直接處理的資料類型，所以今天是介紹為這類資料作編碼，編碼完後才會送進機器模型運算。
+	
+	HW: 請研讀參考資料 https://medium.com/@contactsunny/label-encoder-vs-one-hot-encoder-in-machine-learning-3fc273365621
+	，同時完成第四天的程式。
+
+	
+Day 5: EDA之資料分布
+
+	EDA 當然沒有固定的程序進行，但是對於新手而言，對於十個出頭的特徵的經典題目 Titanic 都已經是不知道如何下手了，更何況今天的題目有百餘個特徵。所以如果有一個按部就班的程序可以遵循，在新手時期是十分珍貴的。
+	
+	今天算是第三天的 EDA，Day 2時是第一次看資料框架(有多少資料，是寬的胖的高的瘦的)，Day 4 時是觀察這些特徵的資料類型，今天我們要來看看特徵資料的統計特性，
+	計算集中趨勢
+		•平均值 Mean
+		•中位數 Median
+		•眾數 Mode 
+	計算資料分散程度
+		•最⼩值 Min
+		•最⼤值 Max
+		•範圍 Range
+		•四分位差 Quartiles
+		•變異數 Variance
+		•標準差 Standard deviation
+		
+	HW: 今天的作業是挑三個有興趣的特徵來看它們的統計特性，挑選的方式可以是在 Day 2時的 HomeCredit_columns_description.csv 研讀時對於特徵了解而挑選，如果挑很多個，最後也可以用 sns.heatmap(corr()matric) 的關係來挑選。
+	今天要學會 DataFrame.describe() 來看基本統計資料。也要學會畫直方圖 (histogram) by plt.hist
+
+延伸參考資料有，前三類請各挑一篇觀看，
+
+<Label Encoding 與 One Hot Encoding 三種文字可以選擇>
+https://medium.com/@contactsunny/label-encoder-vs-one-hot-encoder-in-machine-learning-3fc273365621 (英文)
+https://tw.saowen.com/a/1b61dc9734ec055fd42ce2160acc79171cc5ff121248c3ceb44d65c4235feb57  (中文)
+https://www.smwenku.com/a/5baab6e32b7177781a0e6859/zh-cn/  (中文)
+
+分布的介紹(入門看 Normal dist. 二項式 Binomial 跟 Poisson 就好，練練英文不錯，或自己 Google) 
+https://www.healthknowledge.org.uk/public-health-textbook/research-methods/1b-statistical-methods/statistical-distributions(英文)
+https://chrisalbon.com/python/data_wrangling/pandas_dataframe_descriptive_stats/ (英文)
+https://amaozhao.gitbooks.io/pandas-notebook/content/pandas%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0.html (中文)
+
+直方圖
+https://zh.wikipedia.org/zh-tw/%E7%9B%B4%E6%96%B9%E5%9B%BE
+http://blog.topspeedsnail.com/archives/814
+https://amaozhao.gitbooks.io/pandas-notebook/content/pandas%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E5%87%BD%E6%95%B0.html
+
+進階: ROC (遲早會遇見的任務)
+https://en.wikipedia.org/wiki/Receiver_operating_characteristic
+
+其他
+https://ithelp.ithome.com.tw/articles/10185922 
